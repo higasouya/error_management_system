@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>エラー選択画面</title>
+    <link th:href="@{/css/commons.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:insert="common/header"></th:block>
+<p style="color:white;">件数をクリックして詳細に移行</p>
+<table class="errorNameTable">
+    <thead>
+    <tr>
+        <th>エラー名</th>
+        <th>件数</th>
+
+    </tr>
+    </thead>
+    <tbody>
+<!--    ここでnamePieceにエラー名と件数を表示するためのクラスを入れている-->
+    <tr th:each="errorPiece : ${namePiece}">
+        <td th:text="${errorPiece.name}"></td>
+        <td><a class="detail_btn" th:href="'errors/' + ${errorPiece.id}" th:text="${errorPiece.sum}">
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+<a href="insert" class="btn_01">エラー追加</a>
+
+
+
+</body>
+</html>

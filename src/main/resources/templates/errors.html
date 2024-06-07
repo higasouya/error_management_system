@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>エラー詳細画面</title>
+    <link th:href="@{/css/commons.css}" rel="stylesheet">
+</head>
+<body>
+<th:block th:insert="common/header"></th:block>
+
+<h1><p th:text="${Errors.name}"></p></h1>
+<table class="caseNameTable">
+    <thead>
+    <tr>
+        <th>事例ID</th>
+        <th>状況</th>
+        <th>解決済みかどうか</th>
+        <th>投稿者</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="case : ${Cases}">
+        <td th:text="${case.id}"></td>
+        <td><a th:href="'case/' + ${case.id}"><div th:text="${case.description}"></div></a></td>
+        <td th:text="${case.solve}"></td>
+        <td th:text="${case.user_name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="insertCase" class="btn_01">事例追加</a>
+
+
+</body>
+</html>

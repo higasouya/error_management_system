@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ログイン</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700">
+    <link th:href="@{/css/commons.css}" rel="stylesheet">
+</head>
+<body>
+<div class="header" style="margin: 0 auto; width:320px;">
+    <h1 class="site_logo">エラーログ管理システム</h1>
+</div>
+
+<p id="error" th:if="${error}" th:text="${error}"></p>
+
+<div id="login">
+    <form action="index" method="post" th:object="${loginForm}">
+        <span class="fontawesome-user"></span>
+        <input type="text" id="user" placeholder="LoginId" th:field="*{loginId}">
+        <div class="error" th:each="error: ${#fields.errors('loginId')}">
+            [[ ${error} ]]
+        </div>
+
+        <span class="fontawesome-lock"></span>
+        <input type="password" id="pass" placeholder="Password" th:field="*{password}">
+        <div class="error" th:each="error: ${#fields.errors('password')}">
+            [[ ${error} ]]
+        </div>
+
+        <input type="submit" value="Login">
+
+    </form>
+
+    <a href="/newUser" class="btn_01">新規登録</a>
+</div>
+
+</body>
+</html>
